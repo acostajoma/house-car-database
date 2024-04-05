@@ -13,7 +13,7 @@ CREATE OR REPLACE FUNCTION insert_property_post_with_profile(
     property_post_published BOOLEAN,
     property_post_sale_type sale_type,
     property_post_state TEXT,
-    property_post_images JSONB,
+    property_post_images TEXT[],
     property_post_address TEXT DEFAULT NULL,
     property_post_bathrooms INT DEFAULT NULL,
     property_post_bedrooms INT DEFAULT NULL,
