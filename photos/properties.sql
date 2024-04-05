@@ -14,13 +14,13 @@ SELECT
 
 CREATE POLICY "Users can insert their own photos."
   ON photo FOR INSERT
-  WITH CHECK (auth.uid() = owner_id);
+  WITH CHECK (SELECT( auth.uid() ) = owner_id);
 
 CREATE POLICY "Users can update own photos."
   ON photo FOR UPDATE
-  USING (auth.uid() = owner_id);
+  USING (SELECT( auth.uid() ) = owner_id);
 
   CREATE POLICY "Photo is deletable by owner." ON photo FOR
 DELETE  USING (
-    auth.uid() = owner_id
+    SELECT( auth.uid() ) = owner_id
 );

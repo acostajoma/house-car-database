@@ -16,15 +16,15 @@ ALTER TABLE profile ENABLE ROW LEVEL SECURITY;
 -- Profile Policies
 CREATE POLICY "Profiles are viewable by users who created them."
   ON profile FOR SELECT
-  USING (auth.uid() = id);
+  USING ( ( SELECT auth.uid() ) = id);
 
 CREATE POLICY "Users can insert their own profile."
   ON profile FOR INSERT
-  WITH CHECK (auth.uid() = id);
+  WITH CHECK ( ( SELECT auth.uid() ) = id);
 
 CREATE POLICY "Users can update own profile."
   ON profile FOR UPDATE
-  USING (auth.uid() = id);
+  USING ( ( SELECT auth.uid()) = id);
 
 -- Inserts a row into public.profiles
 CREATE OR REPLACE FUNCTION public.handle_new_user()
