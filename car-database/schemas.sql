@@ -9,7 +9,7 @@ CREATE TABLE carpost (
     is_automatic_transmission BOOLEAN NOT NULL,
     kilometers INT NOT NULL,
     location_id INT NOT NULL,
-    main_image_path TEXT NOT NULL,
+    main_image_public_id TEXT NOT NULL,
     make TEXT  NOT NULL,
     model TEXT  NOT NULL,
     owner_id UUID NOT NULL,

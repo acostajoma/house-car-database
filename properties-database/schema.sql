@@ -31,7 +31,7 @@ CREATE TABLE property_post (
     -- Información adicional
     description TEXT,
     published BOOLEAN NOT NULL DEFAULT FALSE,
-    main_image_path TEXT NOT NULL,
+    main_image_public_id TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     expires_at TIMESTAMP NOT NULL WITH TIME ZONE NOT NULL,

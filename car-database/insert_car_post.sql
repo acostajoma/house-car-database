@@ -8,7 +8,7 @@ CREATE OR REPLACE FUNCTION insert_carpost_with_profile(
     carpost_is_automatic_transmission BOOLEAN,
     carpost_kilometers INT,
     carpost_location_id INT,
-    carpost_main_image_path TEXT,
+    carpost_main_image_public_id TEXT,
     carpost_make TEXT,
     carpost_model TEXT,
     carpost_passengers SMALLINT,
@@ -27,8 +27,8 @@ DECLARE
     carpost_id INT;
 BEGIN
     -- Insert carpost
-    INSERT INTO carpost (category, combustible, currency, expires_at, exterior_color, is_automatic_transmission, kilometers, location_id, main_image_path, make, model, owner_id, passengers, price, year)
-    VALUES (carpost_category, carpost_combustible, carpost_currency, carpost_expires_at, carpost_exterior_color, carpost_is_automatic_transmission, carpost_kilometers, carpost_location_id, carpost_main_image_path, carpost_make, carpost_model, profile_id, carpost_passengers, carpost_price, carpost_year)
+    INSERT INTO carpost (category, combustible, currency, expires_at, exterior_color, is_automatic_transmission, kilometers, location_id, main_image_public_id, make, model, owner_id, passengers, price, year)
+    VALUES (carpost_category, carpost_combustible, carpost_currency, carpost_expires_at, carpost_exterior_color, carpost_is_automatic_transmission, carpost_kilometers, carpost_location_id, carpost_main_image_public_id, carpost_make, carpost_model, profile_id, carpost_passengers, carpost_price, carpost_year)
     RETURNING id INTO carpost_id;
 
     -- Insert carpost_additional_information
