@@ -54,7 +54,60 @@ BEGIN
     ELSE
         CREATE POLICY "Property Posts can be deleted by owner." ON property_post FOR DELETE
         USING (
-            (SELECT auth.uid()) = owner_idS
+            (SELECT auth.uid()) = owner_id
+        );
+    END IF;
+END
+$$;
+
+
+DO $$
+BEGIN
+    -- Verificar y crear/alterar la política para SELECT
+    IF EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Property additional info is viewable by everyone.' AND tablename = 'property_additional_info') THEN
+        ALTER POLICY "Property additional info is viewable by everyone." ON property_additional_info
+        USING ( TRUE );
+    ELSE
+        CREATE POLICY "Property additional info is viewable by everyone." ON property_additional_info FOR SELECT
+        USING ( TRUE );
+    END IF;
+
+    -- Verificar y crear/alterar la política para INSERT
+    IF EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Users can insert their own Property additional info.' AND tablename = 'property_additional_info') THEN
+        ALTER POLICY "Users can insert their own Property additional info." ON property_additional_info
+        WITH CHECK (
+            (SELECT auth.uid()) = owner_id
+        );
+    ELSE
+        CREATE POLICY "Users can insert their own Property additional info." ON property_additional_info FOR INSERT
+        WITH CHECK (
+            (SELECT auth.uid()) = owner_id
+        );
+    END IF;
+
+    -- Verificar y crear/alterar la política para UPDATE
+    IF EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Users can update their own Property additional info.' AND tablename = 'property_additional_info') THEN
+        ALTER POLICY "Users can update their own Property additional info." ON property_additional_info
+        USING (
+            (SELECT auth.uid()) = owner_id
+        );
+    ELSE
+        CREATE POLICY "Users can update their own Property additional info." ON property_additional_info FOR UPDATE
+        USING (
+            (SELECT auth.uid()) = owner_id
+        );
+    END IF;
+
+    -- Verificar y crear/alterar la política para DELETE
+    IF EXISTS (SELECT 1 FROM pg_policies WHERE policyname = 'Property additional info can be deleted by owner.' AND tablename = 'property_additional_info') THEN
+        ALTER POLICY "Property additional info can be deleted by owner." ON property_additional_info
+        USING (
+            (SELECT auth.uid()) = owner_id
+        );
+    ELSE
+        CREATE POLICY "Property additional info can be deleted by owner." ON property_additional_info FOR DELETE
+        USING (
+            (SELECT auth.uid()) = owner_id
         );
     END IF;
 END
