@@ -1,7 +1,7 @@
 CREATE TABLE photo (
     id SERIAL PRIMARY KEY,
     data TEXT[] NOT NULL,
-    property_post_id INT NOT NULL,
+    property_post_id INT NOT NULL UNIQUE,
     owner_id UUID NOT NULL,
     FOREIGN KEY (property_post_id) REFERENCES property_post(id) ON DELETE CASCADE
 );

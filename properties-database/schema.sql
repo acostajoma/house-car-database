@@ -40,7 +40,7 @@ ALTER TABLE property_post ENABLE ROW LEVEL SECURITY;
 CREATE TABLE property_additional_info (
     -- Keys
     id SERIAL PRIMARY KEY,
-    property_post_id INT NOT NULL,
+    property_post_id INT NOT NULL UNIQUE,
     owner_id UUID NOT NULL,
     
     -- Location
