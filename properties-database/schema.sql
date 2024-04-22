@@ -45,8 +45,8 @@ CREATE TABLE property_additional_info (
     
     -- Location
     address TEXT,
-    latitude NUMERIC(9, 6),
-    longitude NUMERIC(9, 6),
+    latitude NUMERIC(9, 14),
+    longitude NUMERIC(9, 14),
 
     -- Data for Houses
     construction_area NUMERIC(10, 2), -- Área de construcción
