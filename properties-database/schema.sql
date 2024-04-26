@@ -21,6 +21,7 @@ CREATE TABLE property_post (
     -- Los siguientes campos son específicos para casas o apartamentos
     bedrooms INTEGER,
     bathrooms NUMERIC(12, 1),
+    garage_spaces NUMERIC(12, 1),
     
     -- Additional data
     published BOOLEAN NOT NULL DEFAULT FALSE,
