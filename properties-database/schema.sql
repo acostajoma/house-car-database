@@ -58,7 +58,11 @@ CREATE TABLE property_additional_info (
     description TEXT,
     rejected_post BOOLEAN,
 
-
+    -- Contact Information
+    name TEXT NOT NULL,
+    last_name TEXT,
+    email TEXT,
+    phone  TEXT NOT NULL,
 
     -- Relations
     FOREIGN KEY (owner_id) REFERENCES profile(id) ON DELETE CASCADE,
