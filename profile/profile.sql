@@ -4,15 +4,11 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE TABLE profile (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     email TEXT UNIQUE NOT NULL,
-    name TEXT NOT NULL,
-    last_name TEXT,
-    phone TEXT NOT NULL,
     is_admin BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 -- Row Level Security
 ALTER TABLE profile ENABLE ROW LEVEL SECURITY;
-
 -- Profile Policies
 CREATE POLICY "Profiles are viewable by users who created them."
   ON profile FOR SELECT
@@ -30,8 +26,8 @@ CREATE POLICY "Users can update own profile."
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO public.profile (id, email, name, last_name, phone, is_admin)
-    VALUES (NEW.id, NEW.email, NEW.raw_user_meta_data ->> 'name', NEW.raw_user_meta_data ->> 'last_name', NEW.raw_user_meta_data ->> 'phone', FALSE);
+    INSERT INTO public.profile (id, email, is_admin)
+    VALUES (NEW.id, NEW.email, FALSE);
     RETURN NEW;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
