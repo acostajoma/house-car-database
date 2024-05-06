@@ -3,9 +3,10 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE TABLE personal_data(
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     profile_id UUID NOT NULL UNIQUE REFERENCES profile(id),
-    name TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL,
+    name TEXT,
     last_name TEXT,
-    email TEXT NOT NULL
+    phone TEXT UNIQUE,
 );
 
 -- Row Level Security
