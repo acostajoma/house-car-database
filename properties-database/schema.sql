@@ -22,6 +22,7 @@ CREATE TABLE property_post (
     bedrooms INTEGER,
     bathrooms NUMERIC(12, 1),
     garage_spaces NUMERIC(12, 1),
+    has_garden BOOLEAN,
     
     -- Additional data
     published BOOLEAN NOT NULL DEFAULT FALSE,
@@ -63,6 +64,7 @@ CREATE TABLE property_additional_info (
     last_name TEXT,
     email TEXT,
     phone  TEXT NOT NULL,
+    phone_country_code  TEXT NOT NULL,
 
     -- Relations
     FOREIGN KEY (owner_id) REFERENCES profile(id) ON DELETE CASCADE,

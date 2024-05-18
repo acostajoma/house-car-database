@@ -7,6 +7,7 @@ CREATE TABLE personal_data(
     name TEXT,
     last_name TEXT,
     phone TEXT UNIQUE,
+    phone_country_code  TEXT NOT NULL,
 );
 
 -- Row Level Security
