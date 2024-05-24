@@ -23,6 +23,7 @@ CREATE TABLE property_post (
     bathrooms NUMERIC(12, 1),
     garage_spaces INTEGER,
     has_garden BOOLEAN,
+    located_on_condominium BOOLEAN NOT NULL,
     
     -- Additional data
     published BOOLEAN NOT NULL DEFAULT FALSE,
